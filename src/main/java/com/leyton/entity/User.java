@@ -1,29 +1,35 @@
 
-package com.leyton.model;
+package com.leyton.entity;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(
+        collection = "users")
 public class User implements Serializable {
 
     private static final long serialVersionUID = -1950178753322865830L;
 
-    private Long id;
+    @Id
+    private String id;
 
     private String name;
 
     public User() {
     }
 
-    public User(Long id, String name) {
+    public User(String id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
