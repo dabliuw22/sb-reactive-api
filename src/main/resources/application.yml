@@ -1,9 +1,5 @@
 spring:
   data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: reactive_db
     r2db:
       postgres:
         host: localhost

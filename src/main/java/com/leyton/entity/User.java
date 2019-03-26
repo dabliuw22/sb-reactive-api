@@ -4,10 +4,10 @@ package com.leyton.entity;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.relational.core.mapping.Table;
 
-@Document(
-        collection = "users")
+@Table(
+        value = "users")
 public class User implements Serializable {
 
     private static final long serialVersionUID = -1950178753322865830L;

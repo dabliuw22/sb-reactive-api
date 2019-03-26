@@ -4,7 +4,10 @@ package com.leyton.entity;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+@Table(
+        value = "products")
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 179285234948700284L;
