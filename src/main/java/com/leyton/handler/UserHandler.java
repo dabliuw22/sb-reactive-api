@@ -11,7 +11,6 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import com.leyton.entity.User;
 import com.leyton.service.inter.UserService;
 
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -35,9 +34,8 @@ public class UserHandler {
     }
 
     public Mono<ServerResponse> all(ServerRequest request) {
-        Flux<User> body = userService.getAll();
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromPublisher(body, User.class));
+                .body(BodyInserters.fromPublisher(userService.getAll(), User.class));
     }
 
     public Mono<ServerResponse> update(ServerRequest request) {
@@ -48,9 +46,7 @@ public class UserHandler {
     }
 
     public Mono<ServerResponse> delete(ServerRequest request) {
-        return userService.delete(Mono.just(request.pathVariable("id")))
-                .flatMap(v -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromObject(v))
-                        .switchIfEmpty(ServerResponse.notFound().build()));
+        return userService.delete(Mono.just(request.pathVariable("id"))).flatMap(v -> ServerResponse
+                .noContent().build().switchIfEmpty(ServerResponse.notFound().build()));
     }
 }
